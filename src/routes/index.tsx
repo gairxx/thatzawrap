@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { getGoogleReviews } from "@/utils/google-reviews";
 import logo from "@/assets/thatz-a-wrap-logo.png";
 import hero from "@/assets/hero-supercar.jpg";
 import p1 from "@/assets/portfolio-1.jpg";
@@ -17,7 +18,14 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Premium vehicle wraps, PPF & ceramic coating in Columbus, Georgia." },
     ],
   }),
+  loader: () => getGoogleReviews(),
+  staleTime: 1000 * 60 * 60, // 1 hour
   component: HomePage,
+  errorComponent: ({ error }) => (
+    <div className="mx-auto max-w-3xl px-5 py-20 text-center">
+      <p className="text-muted-foreground">Something went wrong: {error.message}</p>
+    </div>
+  ),
 });
 
 const services = [
@@ -27,13 +35,8 @@ const services = [
   { icon: Palette, title: "Graphic Design", desc: "Custom fleet branding and one-of-a-kind designs.", accent: "lime" as const, href: "/services" as const },
 ];
 
-const reviews = [
-  { name: "Marcus T.", text: "Best wrap shop in Columbus. Period. My matte black GT-R turned every head.", rating: 5 },
-  { name: "Ashley R.", text: "Wrapped our entire fleet of 6 vans. Insanely sharp work and super fast.", rating: 5 },
-  { name: "Devon B.", text: "Ceramic coating is unreal. Water just slides off. These guys know their stuff.", rating: 5 },
-];
-
 function HomePage() {
+  const { rating, total, reviews, error } = Route.useLoaderData();
   return (
     <>
       {/* HERO */}
@@ -149,31 +152,65 @@ function HomePage() {
         <SectionHeading
           eyebrow="Google Reviews"
           title="Trusted by Drivers Across Columbus"
-          description="Real reviews from real customers — see why we're the go-to wrap shop in the region."
+          description={
+            rating && total
+              ? `Rated ${rating.toFixed(1)} out of 5 across ${total.toLocaleString()} verified Google reviews.`
+              : "Real reviews from real customers — see why we're the go-to wrap shop in the region."
+          }
           align="center"
         />
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {reviews.map((r) => (
-            <div key={r.name} className="relative border border-border bg-[var(--surface)] p-6">
-              <div className="absolute -top-px left-0 h-0.5 w-12 bg-[var(--lime)]" />
-              <div className="flex gap-0.5 text-[var(--lime)]">
-                {Array.from({ length: r.rating }).map((_, i) => (
-                  <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
-                ))}
-              </div>
-              <p className="mt-4 text-sm text-foreground/90">"{r.text}"</p>
-              <div className="mt-5 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center bg-[var(--cyan)] text-sm font-black text-[var(--primary-foreground)]">
-                  {r.name[0]}
-                </div>
-                <div>
-                  <div className="text-sm font-bold">{r.name}</div>
-                  <div className="text-xs text-muted-foreground">Verified Google Review</div>
-                </div>
-              </div>
+        {rating !== null && (
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <div className="flex gap-0.5 text-[var(--lime)]">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} size={20} fill={i < Math.round(rating) ? "currentColor" : "none"} strokeWidth={1.5} />
+              ))}
             </div>
-          ))}
-        </div>
+            <span className="text-sm font-black uppercase tracking-widest text-[var(--cyan)]">
+              {rating.toFixed(1)} / 5.0
+            </span>
+          </div>
+        )}
+        {error && reviews.length === 0 && (
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            Unable to load live reviews right now. Visit our Google Business Profile to read the latest.
+          </p>
+        )}
+        {reviews.length > 0 && (
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {reviews.slice(0, 3).map((r, idx) => (
+              <div key={`${r.author_name}-${idx}`} className="relative border border-border bg-[var(--surface)] p-6">
+                <div className="absolute -top-px left-0 h-0.5 w-12 bg-[var(--lime)]" />
+                <div className="flex gap-0.5 text-[var(--lime)]">
+                  {Array.from({ length: r.rating }).map((_, i) => (
+                    <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
+                  ))}
+                </div>
+                <p className="mt-4 line-clamp-5 text-sm text-foreground/90">"{r.text}"</p>
+                <div className="mt-5 flex items-center gap-3">
+                  {r.profile_photo_url ? (
+                    <img
+                      src={r.profile_photo_url}
+                      alt={r.author_name}
+                      loading="lazy"
+                      className="h-9 w-9 object-cover"
+                      width={36}
+                      height={36}
+                    />
+                  ) : (
+                    <div className="flex h-9 w-9 items-center justify-center bg-[var(--cyan)] text-sm font-black text-[var(--primary-foreground)]">
+                      {r.author_name[0]}
+                    </div>
+                  )}
+                  <div>
+                    <div className="text-sm font-bold">{r.author_name}</div>
+                    <div className="text-xs text-muted-foreground">{r.relative_time_description} · Google</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* CTA */}
