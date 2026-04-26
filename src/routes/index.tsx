@@ -177,38 +177,46 @@ function HomePage() {
           </p>
         )}
         {reviews.length > 0 && (
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {reviews.slice(0, 3).map((r, idx) => (
-              <div key={`${r.author_name}-${idx}`} className="relative border border-border bg-[var(--surface)] p-6">
-                <div className="absolute -top-px left-0 h-0.5 w-12 bg-[var(--lime)]" />
-                <div className="flex gap-0.5 text-[var(--lime)]">
-                  {Array.from({ length: r.rating }).map((_, i) => (
-                    <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
-                  ))}
-                </div>
-                <p className="mt-4 line-clamp-5 text-sm text-foreground/90">"{r.text}"</p>
-                <div className="mt-5 flex items-center gap-3">
-                  {r.profile_photo_url ? (
-                    <img
-                      src={r.profile_photo_url}
-                      alt={r.author_name}
-                      loading="lazy"
-                      className="h-9 w-9 object-cover"
-                      width={36}
-                      height={36}
-                    />
-                  ) : (
-                    <div className="flex h-9 w-9 items-center justify-center bg-[var(--cyan)] text-sm font-black text-[var(--primary-foreground)]">
-                      {r.author_name[0]}
+          <div className="mt-12 -mx-5 overflow-x-auto px-5 pb-4 [scrollbar-width:thin]">
+            <div className="flex gap-5 snap-x snap-mandatory">
+              {reviews.map((r, idx) => (
+                <div
+                  key={`${r.author_name}-${idx}`}
+                  className="relative w-[85%] flex-shrink-0 snap-start border border-border bg-[var(--surface)] p-6 sm:w-[420px]"
+                >
+                  <div className="absolute -top-px left-0 h-0.5 w-12 bg-[var(--lime)]" />
+                  <div className="flex gap-0.5 text-[var(--lime)]">
+                    {Array.from({ length: r.rating }).map((_, i) => (
+                      <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
+                    ))}
+                  </div>
+                  <p className="mt-4 line-clamp-6 text-sm text-foreground/90">"{r.text}"</p>
+                  <div className="mt-5 flex items-center gap-3">
+                    {r.profile_photo_url ? (
+                      <img
+                        src={r.profile_photo_url}
+                        alt={r.author_name}
+                        loading="lazy"
+                        className="h-9 w-9 object-cover"
+                        width={36}
+                        height={36}
+                      />
+                    ) : (
+                      <div className="flex h-9 w-9 items-center justify-center bg-[var(--cyan)] text-sm font-black text-[var(--primary-foreground)]">
+                        {r.author_name[0]}
+                      </div>
+                    )}
+                    <div>
+                      <div className="text-sm font-bold">{r.author_name}</div>
+                      <div className="text-xs text-muted-foreground">{r.relative_time_description} · Google</div>
                     </div>
-                  )}
-                  <div>
-                    <div className="text-sm font-bold">{r.author_name}</div>
-                    <div className="text-xs text-muted-foreground">{r.relative_time_description} · Google</div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <p className="mt-3 text-center text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground">
+              ← Swipe / scroll →
+            </p>
           </div>
         )}
       </section>
