@@ -2,10 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { getGoogleReviews } from "@/utils/google-reviews";
 import logo from "@/assets/thatz-a-wrap-logo.png";
 import hero from "@/assets/hero-supercar.jpg";
-import p1 from "@/assets/portfolio-1.jpg";
-import p2 from "@/assets/portfolio-2.jpg";
-import p3 from "@/assets/portfolio-3.jpg";
-import p4 from "@/assets/portfolio-4.jpg";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Car, Shield, Sparkles, Palette, Star, MapPin, ArrowRight } from "lucide-react";
 
@@ -36,7 +32,8 @@ const services = [
 ];
 
 function HomePage() {
-  const { rating, total, reviews, error } = Route.useLoaderData();
+  const { rating, total, reviews, photos, error } = Route.useLoaderData();
+  const portfolioPhotos = photos.slice(0, 8);
   return (
     <>
       {/* HERO */}
@@ -132,18 +129,31 @@ function HomePage() {
               View Portfolio <ArrowRight size={16} />
             </Link>
           </div>
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {[p1, p2, p3, p4].map((src, i) => (
-              <div key={i} className="group relative aspect-[4/3] overflow-hidden border border-border">
-                <img src={src} alt="Vehicle wrap project" loading="lazy" width={1024} height={768} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <div className="text-[10px] font-black uppercase tracking-[0.25em] text-[var(--cyan)]">Columbus, GA</div>
-                  <div className="mt-1 text-sm font-bold">Custom Wrap Project #{i + 1}</div>
+          {portfolioPhotos.length > 0 ? (
+            <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+              {portfolioPhotos.map((photo, i) => (
+                <div key={photo.id} className="group relative aspect-square overflow-hidden border border-border bg-[var(--surface)]">
+                  <img
+                    src={`/api/places-photo/${photo.id}?w=800`}
+                    alt={`Thatz a Wrap project ${i + 1}`}
+                    loading="lazy"
+                    width={800}
+                    height={800}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <div className="text-[10px] font-black uppercase tracking-[0.25em] text-[var(--cyan)]">Columbus, GA</div>
+                    <div className="mt-1 text-sm font-bold">From Our Shop</div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-10 grid place-items-center border border-border bg-[var(--surface)] py-16 text-center">
+              <p className="text-sm text-muted-foreground">Loading shop photos from Google…</p>
+            </div>
+          )}
         </div>
       </section>
 
