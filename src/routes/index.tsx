@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { getGoogleReviews } from "@/utils/google-reviews";
 import logo from "@/assets/thatz-a-wrap-logo.png";
 import hero from "@/assets/hero-supercar.jpg";
 import p1 from "@/assets/portfolio-1.jpg";
@@ -17,7 +18,14 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Premium vehicle wraps, PPF & ceramic coating in Columbus, Georgia." },
     ],
   }),
+  loader: () => getGoogleReviews(),
+  staleTime: 1000 * 60 * 60, // 1 hour
   component: HomePage,
+  errorComponent: ({ error }) => (
+    <div className="mx-auto max-w-3xl px-5 py-20 text-center">
+      <p className="text-muted-foreground">Something went wrong: {error.message}</p>
+    </div>
+  ),
 });
 
 const services = [
@@ -27,13 +35,8 @@ const services = [
   { icon: Palette, title: "Graphic Design", desc: "Custom fleet branding and one-of-a-kind designs.", accent: "lime" as const, href: "/services" as const },
 ];
 
-const reviews = [
-  { name: "Marcus T.", text: "Best wrap shop in Columbus. Period. My matte black GT-R turned every head.", rating: 5 },
-  { name: "Ashley R.", text: "Wrapped our entire fleet of 6 vans. Insanely sharp work and super fast.", rating: 5 },
-  { name: "Devon B.", text: "Ceramic coating is unreal. Water just slides off. These guys know their stuff.", rating: 5 },
-];
-
 function HomePage() {
+  const { rating, total, reviews, error } = Route.useLoaderData();
   return (
     <>
       {/* HERO */}
