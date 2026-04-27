@@ -43,11 +43,11 @@ function HomePage() {
           <div className="absolute inset-0 grid-bg opacity-90" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
         </div>
-        <div className="relative mx-auto flex max-w-7xl flex-col items-center px-5 py-20 text-center md:py-32">
+        <div className="relative flex flex-col items-center py-20 text-center md:py-32">
           <div className="mb-3 inline-flex items-center gap-2 border border-[var(--cyan)]/40 bg-background/40 px-3 py-1 text-[10px] font-black uppercase tracking-[0.3em] text-[var(--cyan)] backdrop-blur">
             <MapPin size={12} /> Columbus, Georgia
           </div>
-          <img src={logo} alt="Thatz a Wrap" className="mt-6 w-full max-w-3xl drop-shadow-[0_0_40px_rgba(0,200,255,0.35)]" width={900} height={520} />
+          <img src={logo} alt="Thatz a Wrap" className="mt-6 w-full drop-shadow-[0_0_40px_rgba(0,200,255,0.35)]" width={1920} height={1110} />
           <h1 className="mt-8 max-w-3xl text-3xl font-black leading-tight md:text-5xl">
             The <span className="text-[var(--cyan)]">#1 Custom Vehicle Wraps</span> in Columbus Georgia
           </h1>
