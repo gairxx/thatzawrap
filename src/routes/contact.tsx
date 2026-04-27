@@ -64,55 +64,18 @@ function ContactPage() {
 
       <section className="mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-[1.5fr_1fr]">
         {/* FORM */}
-        <div className="border border-border bg-[var(--surface)] p-6 md:p-10">
-          {submitted ? (
-            <div className="flex flex-col items-center gap-4 py-12 text-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--lime)] text-[var(--primary-foreground)]">
-                <Check size={28} />
-              </div>
-              <h3 className="text-2xl font-black">Quote Request Sent</h3>
-              <p className="max-w-sm text-sm text-muted-foreground">Thanks! We'll be in touch within one business day.</p>
-            </div>
-          ) : (
-            <form onSubmit={onSubmit} className="grid gap-5" noValidate>
-              <Field label="Full Name" name="name" error={errors.name} />
-              <div className="grid gap-5 md:grid-cols-2">
-                <Field label="Email" name="email" type="email" error={errors.email} />
-                <Field label="Phone" name="phone" type="tel" error={errors.phone} />
-              </div>
-              <Field label="Year / Make / Model" name="vehicle" placeholder="2023 Tesla Model 3" error={errors.vehicle} />
-              <div>
-                <Label>Service Desired</Label>
-                <select
-                  name="service"
-                  defaultValue=""
-                  className="w-full border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-[var(--cyan)]"
-                >
-                  <option value="" disabled>Select a service…</option>
-                  {services.map((s) => (
-                    <option key={s} value={s}>{s}</option>
-                  ))}
-                </select>
-                {errors.service && <p className="mt-1 text-xs text-destructive">{errors.service}</p>}
-              </div>
-              <div>
-                <Label>Project Details</Label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  maxLength={1000}
-                  placeholder="Tell us about colors, finishes, timing, photos to share, etc."
-                  className="w-full border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-[var(--cyan)]"
-                />
-              </div>
-              <button
-                type="submit"
-                className="clip-arrow inline-flex items-center justify-center gap-2 bg-[var(--cyan)] px-7 py-4 text-sm font-black uppercase tracking-widest text-[var(--primary-foreground)] transition-all hover:shadow-[var(--glow-cyan)]"
-              >
-                Send Quote Request <Send size={16} />
-              </button>
-            </form>
-          )}
+        <div className="border border-border bg-[var(--surface)] p-2 md:p-4">
+          <iframe
+            src="https://app.urable.com/form/91ygdw1Yom6AJqNRCBPq/Owa7xkZknJowbS5HnsfP"
+            title="Quote Request Form"
+            scrolling="no"
+            frameBorder="0"
+            marginHeight={0}
+            marginWidth={0}
+            height="1200"
+            width="100%"
+            className="block w-full"
+          />
         </div>
 
         {/* INFO */}
