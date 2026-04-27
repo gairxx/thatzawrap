@@ -28,7 +28,7 @@ const services = [
   { icon: Car, title: "Vehicle Wraps", desc: "Full, partial & color change wraps with 3M and Avery materials.", accent: "cyan" as const, href: "/services" as const },
   { icon: Shield, title: "Paint Protection Film", desc: "Invisible armor that keeps your paint flawless for years.", accent: "cyan" as const, href: "/services" as const },
   { icon: Sparkles, title: "Ceramic Coating", desc: "Hydrophobic, high-gloss protection that lasts.", accent: "lime" as const, href: "/services" as const },
-  { icon: Palette, title: "Graphic Design", desc: "Custom fleet branding and one-of-a-kind designs.", accent: "lime" as const, href: "/services" as const },
+  { icon: Palette, title: "Graphic Design", desc: "Custom commercial branding and one-of-a-kind designs.", accent: "lime" as const, href: "/services" as const },
 ];
 
 function HomePage() {
