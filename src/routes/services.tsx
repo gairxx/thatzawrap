@@ -6,9 +6,9 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services | Vehicle Wraps, PPF & Ceramic Coating Columbus GA" },
-      { name: "description", content: "Vehicle wraps, paint protection film, ceramic coating, and fleet branding in Columbus, Georgia." },
+      { name: "description", content: "Vehicle wraps, paint protection film, ceramic coating, and commercial branding in Columbus, Georgia." },
       { property: "og:title", content: "Services | Thatz a Wrap Columbus GA" },
-      { property: "og:description", content: "Custom vehicle wraps, PPF, ceramic coating, and fleet branding." },
+      { property: "og:description", content: "Custom vehicle wraps, PPF, ceramic coating, and commercial branding." },
     ],
   }),
   component: ServicesPage,
