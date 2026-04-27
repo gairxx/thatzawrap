@@ -39,7 +39,7 @@ const services = [
   {
     icon: Palette,
     accent: "lime",
-    title: "Fleet Branding",
+    title: "commercial Branding",
     desc: "Turn your work vehicles into rolling billboards with custom-designed commercial wraps.",
     bullets: ["In-house custom design", "Volume pricing", "Quick turnaround", "Local Columbus business specialist"],
   },
