@@ -41,8 +41,8 @@ export const Route = createRootRoute({
       { name: "twitter:title", content: "Thatz a Wrap | Custom Vehicle Wraps in Columbus, GA" },
       { property: "og:description", content: "Premium vehicle wraps, paint protection film & ceramic coating in Columbus, Georgia." },
       { name: "twitter:description", content: "Premium vehicle wraps, paint protection film & ceramic coating in Columbus, Georgia." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4dfd3c35-13af-4028-a8de-0c27f6860e82/id-preview-20a26b07--56ddf718-0e98-4cad-b887-00a2bab32b4f.lovable.app-1777220569371.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4dfd3c35-13af-4028-a8de-0c27f6860e82/id-preview-20a26b07--56ddf718-0e98-4cad-b887-00a2bab32b4f.lovable.app-1777220569371.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/4a324587-98e7-4161-ad99-ca2bf335e0ff" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/4a324587-98e7-4161-ad99-ca2bf335e0ff" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
