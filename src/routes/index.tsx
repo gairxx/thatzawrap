@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { getGoogleReviews } from "@/utils/google-reviews";
+import { getGoogleReviews, type GooglePhoto, type GoogleReview } from "@/utils/google-reviews";
 import logo from "@/assets/thatz-a-wrap-logo.png";
 import hero from "@/assets/hero-supercar.jpg";
 import { SectionHeading } from "@/components/site/SectionHeading";

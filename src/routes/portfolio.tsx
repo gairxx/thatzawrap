@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { getGoogleReviews } from "@/utils/google-reviews";
+import { getGoogleReviews, type GooglePhoto } from "@/utils/google-reviews";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
