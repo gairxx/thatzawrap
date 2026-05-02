@@ -43,7 +43,7 @@ function PortfolioPage() {
 
         {photos.length > 0 ? (
           <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {photos.map((photo, i) => (
+            {photos.map((photo: GooglePhoto, i: number) => (
               <article
                 key={photo.id}
                 className="group relative aspect-square overflow-hidden border border-border bg-[var(--surface)]"

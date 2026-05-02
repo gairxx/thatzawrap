@@ -128,7 +128,7 @@ function HomePage() {
           </div>
           {portfolioPhotos.length > 0 ? (
             <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-              {portfolioPhotos.map((photo, i) => (
+              {portfolioPhotos.map((photo: GooglePhoto, i: number) => (
                 <div key={photo.id} className="group relative aspect-square overflow-hidden border border-border bg-[var(--surface)]">
                   <img
                     src={`/api/places-photo/${photo.id}?w=800`}
@@ -186,7 +186,7 @@ function HomePage() {
         {reviews.length > 0 && (
           <div className="mt-12 -mx-5 overflow-x-auto px-5 pb-4 [scrollbar-width:thin]">
             <div className="flex gap-5 snap-x snap-mandatory">
-              {reviews.map((r, idx) => (
+              {reviews.map((r: GoogleReview, idx: number) => (
                 <div
                   key={`${r.author_name}-${idx}`}
                   className="relative w-[85%] flex-shrink-0 snap-start border border-border bg-[var(--surface)] p-6 sm:w-[420px]"
