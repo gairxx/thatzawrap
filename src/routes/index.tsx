@@ -4,7 +4,6 @@ import logo from "@/assets/thatz-a-wrap-logo.png";
 import hero from "@/assets/hero-supercar.jpg";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Car, Shield, Sparkles, Palette, Star, MapPin, ArrowRight } from "lucide-react";
-import { AiPageSearch } from "@/components/site/AiPageSearch";
 
 export const Route = createFileRoute("/")({
   head: () => ({
