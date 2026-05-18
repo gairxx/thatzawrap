@@ -4,7 +4,6 @@ import logo from "@/assets/thatz-a-wrap-logo.png";
 import hero from "@/assets/hero-supercar.jpg";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Car, Shield, Sparkles, Palette, Star, MapPin, ArrowRight } from "lucide-react";
-import { AiPageSearch } from "@/components/site/AiPageSearch";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,12 +64,6 @@ function HomePage() {
             >
               Explore Services
             </Link>
-          </div>
-          <div className="mt-10 w-full px-5">
-            <p className="mb-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Looking for something specific? Generate a page on the fly
-            </p>
-            <AiPageSearch />
           </div>
         </div>
         {/* racing stripe */}
