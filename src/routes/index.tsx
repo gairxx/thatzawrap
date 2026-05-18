@@ -65,12 +65,6 @@ function HomePage() {
               Explore Services
             </Link>
           </div>
-          <div className="mt-10 w-full px-5">
-            <p className="mb-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Looking for something specific? Generate a page on the fly
-            </p>
-            <AiPageSearch />
-          </div>
         </div>
         {/* racing stripe */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-[image:var(--gradient-brand)]" />
