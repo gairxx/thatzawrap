@@ -14,7 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_pages: {
+        Row: {
+          content_md: string
+          created_at: string
+          description: string
+          id: string
+          slug: string
+          title: string
+        }
+        Insert: {
+          content_md: string
+          created_at?: string
+          description: string
+          id?: string
+          slug: string
+          title: string
+        }
+        Update: {
+          content_md?: string
+          created_at?: string
+          description?: string
+          id?: string
+          slug?: string
+          title?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
